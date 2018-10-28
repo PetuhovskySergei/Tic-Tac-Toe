@@ -1,0 +1,19 @@
+#board {
+    width: 500px;
+    height: 500px;
+    background-color: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+#board .item {
+    width: 32%;
+    height: 32%;
+    border: 1px solid white;
+    color: white;
+    font-size: 9rem;
+    text-align: center;
+}
