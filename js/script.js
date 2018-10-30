@@ -38,27 +38,59 @@ window.onload = function () {
             players[i].turn = "current";
         };
 
-        if (
-            (board.childNodes[0].innerText == currentFigure && board.childNodes[1].innerText == currentFigure && board.childNodes[2].innerText == currentFigure) ||
-            (board.childNodes[3].innerText == currentFigure && board.childNodes[4].innerText == currentFigure && board.childNodes[5].innerText == currentFigure) ||
-            (board.childNodes[6].innerText == currentFigure && board.childNodes[7].innerText == currentFigure && board.childNodes[8].innerText == currentFigure) ||
-            (board.childNodes[0].innerText == currentFigure && board.childNodes[3].innerText == currentFigure && board.childNodes[6].innerText == currentFigure) ||
-            (board.childNodes[1].innerText == currentFigure && board.childNodes[4].innerText == currentFigure && board.childNodes[7].innerText == currentFigure) ||
-            (board.childNodes[2].innerText == currentFigure && board.childNodes[5].innerText == currentFigure && board.childNodes[8].innerText == currentFigure) ||
-            (board.childNodes[0].innerText == currentFigure && board.childNodes[4].innerText == currentFigure && board.childNodes[8].innerText == currentFigure) ||
-            (board.childNodes[2].innerText == currentFigure && board.childNodes[4].innerText == currentFigure && board.childNodes[6].innerText == currentFigure)
-        ) {
-            alert(currentPlayer + " is winner");
-            game.state = "Done";
+
+
+        function boardCheck() {
+            let verticalCount = 0,
+                horizontalCount = 0,
+                diagonalCount = 0;
+
+            for (let i = 0; i < board.childNodes.length; i++) {
+                if (event.target.attributes.y.value == board.childNodes[i].getAttribute("y") && event.target.innerText == board.childNodes[i].innerText) {
+                    horizontalCount++
+                }
+
+                if (event.target.attributes.x.value == board.childNodes[i].getAttribute("x") && event.target.innerText == board.childNodes[i].innerText) {
+                    verticalCount++
+                }
+
+                if (
+                    (event.target.attributes.x.value == +board.childNodes[4].getAttribute("x") + 1 && event.target.attributes.y.value == +board.childNodes[4].getAttribute("y") - 1
+                        ||
+                    event.target.attributes.x.value == +board.childNodes[4].getAttribute("x") - 1 && event.target.attributes.y.value == +board.childNodes[4].getAttribute("y") - 1
+                        ||
+                    event.target.attributes.x.value == +board.childNodes[4].getAttribute("x") - 1 && event.target.attributes.y.value == +board.childNodes[4].getAttribute("y") + 1
+                        ||
+                    event.target.attributes.x.value == +board.childNodes[4].getAttribute("x") + 1 && event.target.attributes.y.value == +board.childNodes[4].getAttribute("y") + 1)
+                        && event.target.innerText == board.childNodes[i].innerText) {
+                    diagonalCount++
+                }
+            }
+
+            if (horizontalCount == 3 || verticalCount == 3 || diagonalCount == 3) {
+                alert(currentPlayer + " is winner");
+            };
         }
 
 
-        // horizontalCheck() {
-        //     let flag = event.target.getAttribute("y");
-        // };
+        boardCheck();
 
 
-        // let flag = div.getAttribute('data-widget-name');
+        // if (
+        //     (board.childNodes[0].innerText == currentFigure && board.childNodes[1].innerText == currentFigure && board.childNodes[2].innerText == currentFigure) ||
+        //     (board.childNodes[3].innerText == currentFigure && board.childNodes[4].innerText == currentFigure && board.childNodes[5].innerText == currentFigure) ||
+        //     (board.childNodes[6].innerText == currentFigure && board.childNodes[7].innerText == currentFigure && board.childNodes[8].innerText == currentFigure) ||
+        //     (board.childNodes[0].innerText == currentFigure && board.childNodes[3].innerText == currentFigure && board.childNodes[6].innerText == currentFigure) ||
+        //     (board.childNodes[1].innerText == currentFigure && board.childNodes[4].innerText == currentFigure && board.childNodes[7].innerText == currentFigure) ||
+        //     (board.childNodes[2].innerText == currentFigure && board.childNodes[5].innerText == currentFigure && board.childNodes[8].innerText == currentFigure) ||
+        //     (board.childNodes[0].innerText == currentFigure && board.childNodes[4].innerText == currentFigure && board.childNodes[8].innerText == currentFigure) ||
+        //     (board.childNodes[2].innerText == currentFigure && board.childNodes[4].innerText == currentFigure && board.childNodes[6].innerText == currentFigure)
+        // ) {
+        //     alert(currentPlayer + " is winner");
+        //     game.state = "Done";
+        // }
+
+
 
         // for (let j = 0; j < board.childNodes.length; j++) {
         //     let winner = "";
@@ -79,8 +111,6 @@ window.onload = function () {
         //         alert("asdad")
         //     }
         // }
-
-        console.log(currentFigure)
 
     });
 };
