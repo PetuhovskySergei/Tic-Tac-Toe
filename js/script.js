@@ -1,26 +1,26 @@
 window.onload = function () {
-    let board = document.getElementById("board");
+    const board = document.getElementById("board");
 
-    function generateMatrix(size) {
-        for (let y = 1; y <= size; y++) {
-            for (let x = 1; x <= size; x++) {
-                let newItem = document.createElement("div");
-                newItem.setAttribute("class" , "item");
-                newItem.setAttribute("x" , x);
-                newItem.setAttribute("y" , y);
+    // function generateMatrix(size) {
+    //     for (let y = 1; y <= size; y++) {
+    //         for (let x = 1; x <= size; x++) {
+    //             let newItem = document.createElement("div");
+    //             newItem.setAttribute("class" , "item");
+    //             newItem.setAttribute("x" , x);
+    //             newItem.setAttribute("y" , y);
+    //
+    //             board.appendChild(newItem);
+    //         }
+    //     }
+    // }
+    //
+    // generateMatrix(3);
 
-                board.appendChild(newItem);
-            }
-        }
-    }
+    const game = new Game("Waiting");
 
-    generateMatrix(3);
-
-    let game = new Game("Waiting");
-
-    let player1 = new Player("Вася", "X", "current");
-    let player2 = new Player("Петя", "O", "wait");
-    let players = [player1, player2];
+    const player1 = new Player("Вася", "X", "current");
+    const player2 = new Player("Петя", "O", "wait");
+    const players = [player1, player2];
 
     board.addEventListener("click", function (event) {
         let currentFigure;
@@ -37,8 +37,6 @@ window.onload = function () {
             };
             players[i].turn = "current";
         };
-
-
 
         function boardCheck() {
             let verticalCount = 0,
@@ -89,42 +87,5 @@ window.onload = function () {
         //     alert(currentPlayer + " is winner");
         //     game.state = "Done";
         // }
-
-
-
-        // for (let j = 0; j < board.childNodes.length; j++) {
-        //     let winner = "";
-        //
-        //
-        //     if (board.childNodes[j-1] === undefined || board.childNodes[j+1] === undefined || board.childNodes[j-3] === undefined
-        //         || board.childNodes[j+3] === undefined || board.childNodes[j-4] === undefined || board.childNodes[j+4] === undefined) {
-        //         continue;
-        //     }
-        //
-        //     if (board.childNodes[j].innerText === "") {
-        //         continue;
-        //     } else if ((board.childNodes[j].innerText) == (board.childNodes[j+1].innerText) && (board.childNodes[j].innerText) == (board.childNodes[j-1].innerText)) {
-        //         alert("asdad")
-        //     } else if ((board.childNodes[j].innerText) == (board.childNodes[j+3].innerText) && (board.childNodes[j].innerText) == (board.childNodes[j-3].innerText)) {
-        //         alert("asdad")
-        //     } else if ((board.childNodes[j].innerText) == (board.childNodes[j+4].innerText) && (board.childNodes[j].innerText) == (board.childNodes[j-4].innerText)) {
-        //         alert("asdad")
-        //     }
-        // }
-
     });
 };
-
-class Game {
-    constructor(state) {
-        this.state = state;
-    };
-};
-
-class Player {
-    constructor(name, figure, turn) {
-        this.name = name;
-        this.figure = figure;
-        this.turn = turn;
-    }
-}
