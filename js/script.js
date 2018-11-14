@@ -1,3 +1,5 @@
+// import from boardCheck.js
+
 window.onload = function () {
     const board = document.getElementById("board");
 
@@ -22,11 +24,20 @@ window.onload = function () {
     const player2 = new Player("Петя", "O", "wait");
     const players = [player1, player2];
 
+
+    //game state initialization
+
     board.addEventListener("click", function (event) {
         let currentFigure;
         let currentPlayer;
 
-        game.state = "In game";
+        game.state = {
+            isGameStarted: true,
+            boardMatrix: {
+
+            },
+            currentPlayer: //name of player
+        };
         for (let i = 0; i < players.length; i++) {
             if (players[i].turn === "current") {
                 event.target.innerText = players[i].figure;
@@ -38,37 +49,7 @@ window.onload = function () {
             players[i].turn = "current";
         };
 
-        function boardCheck() {
-            let verticalCount = 0,
-                horizontalCount = 0,
-                diagonalCount = 0;
 
-            for (let i = 0; i < board.childNodes.length; i++) {
-                if (event.target.attributes.y.value == board.childNodes[i].getAttribute("y") && event.target.innerText == board.childNodes[i].innerText) {
-                    horizontalCount++
-                }
-
-                if (event.target.attributes.x.value == board.childNodes[i].getAttribute("x") && event.target.innerText == board.childNodes[i].innerText) {
-                    verticalCount++
-                }
-
-                if (
-                    (event.target.attributes.x.value == +board.childNodes[4].getAttribute("x") + 1 && event.target.attributes.y.value == +board.childNodes[4].getAttribute("y") - 1
-                        ||
-                    event.target.attributes.x.value == +board.childNodes[4].getAttribute("x") - 1 && event.target.attributes.y.value == +board.childNodes[4].getAttribute("y") - 1
-                        ||
-                    event.target.attributes.x.value == +board.childNodes[4].getAttribute("x") - 1 && event.target.attributes.y.value == +board.childNodes[4].getAttribute("y") + 1
-                        ||
-                    event.target.attributes.x.value == +board.childNodes[4].getAttribute("x") + 1 && event.target.attributes.y.value == +board.childNodes[4].getAttribute("y") + 1)
-                        && event.target.innerText == board.childNodes[i].innerText) {
-                    diagonalCount++
-                }
-            }
-
-            if (horizontalCount == 3 || verticalCount == 3 || diagonalCount == 3) {
-                alert(currentPlayer + " is winner");
-            };
-        }
 
 
         boardCheck();
