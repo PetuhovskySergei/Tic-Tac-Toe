@@ -1,7 +1,3 @@
-//to do
-//module export
-
-
 const check = (attribute, idx) => event.target.attributes[attribute].value == board.childNodes[idx].getAttribute(attribute) && event.target.innerText == board.childNodes[idx].innerText;
 
 function boardCheck(event, board) {
@@ -35,3 +31,5 @@ function boardCheck(event, board) {
         alert(currentPlayer + " is winner");
     };
 }
+
+export default boardCheck;
