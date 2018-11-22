@@ -1,4 +1,7 @@
-import boardCheck from "../utils/boardCheck";
+import {Game} from "./game";
+import {Player} from "./player";
+import {boardCheck} from "../utils/boardCheck";
+
 
 window.onload = function () {
     const board = document.getElementById("board");
@@ -24,8 +27,13 @@ window.onload = function () {
     const player2 = new Player("Петя", "O", "wait");
     const players = [player1, player2];
 
+    console.log(game.isGameStarted)
 
     //game state initialization
+
+    game.state = {
+        currentPlayer: player1
+    }
 
     board.addEventListener("click", function (event) {
         let currentFigure;
@@ -36,7 +44,7 @@ window.onload = function () {
             boardMatrix: {
 
             },
-            // currentPlayer: //name of player
+            // currentPlayer: player1
         };
         for (let i = 0; i < players.length; i++) {
             if (players[i].turn === "current") {

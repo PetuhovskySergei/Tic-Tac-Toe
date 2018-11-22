@@ -32,4 +32,4 @@ function boardCheck(event, board) {
     };
 }
 
-export default boardCheck;
+export {boardCheck, check};

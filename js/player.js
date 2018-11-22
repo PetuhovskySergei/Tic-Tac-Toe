@@ -5,3 +5,5 @@ class Player {
         this.turn = turn;
     };
 };
+
+export {Player};
