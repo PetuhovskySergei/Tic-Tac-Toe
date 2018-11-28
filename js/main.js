@@ -23,11 +23,10 @@ window.onload = function () {
 
     const game = new Game("Waiting");
 
+
     const player1 = new Player("Вася", "X", "current");
     const player2 = new Player("Петя", "O", "wait");
-    const players = [player1, player2];
 
-    console.log(game.isGameStarted)
 
     //game state initialization
 
@@ -46,16 +45,10 @@ window.onload = function () {
             },
             // currentPlayer: player1
         };
-        for (let i = 0; i < players.length; i++) {
-            if (players[i].turn === "current") {
-                event.target.innerText = players[i].figure;
-                players[i].turn = "wait";
-                currentFigure = players[i].figure;
-                currentPlayer = players[i].name;
-                continue;
-            };
-            players[i].turn = "current";
-        };
+
+        event.target.innerHTML = game.state.currentPlayer.figure;
+
+        game.state.currentPlayer = game.state.currentPlayer.name == player1.name ? player2 : player1
 
 
 
