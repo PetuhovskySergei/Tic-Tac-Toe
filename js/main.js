@@ -32,7 +32,9 @@ window.onload = function () {
 
     game.state = {
         currentPlayer: player1
+        // isGameStarted: false
     };
+
 
     function playerCheck(playerOne, playerTwo) {
         return game.state.currentPlayer.name == playerOne.name ? playerTwo : playerOne
@@ -42,12 +44,9 @@ window.onload = function () {
 
     board.addEventListener("click", function (event) {
 
-        // game.state = {
-        //     isGameStarted: true
-        //     // boardMatrix: {
-        //     //
-        //     // }
-        // };
+        game.state.isGameStarted = true;
+
+        // game.state = Object.assign({}, game, {})
 
         event.target.innerHTML = game.state.currentPlayer.figure;
 
