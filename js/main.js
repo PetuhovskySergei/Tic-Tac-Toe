@@ -24,31 +24,34 @@ window.onload = function () {
     const game = new Game("Waiting");
 
 
-    const player1 = new Player("Вася", "X", "current");
-    const player2 = new Player("Петя", "O", "wait");
+    const player1 = new Player("Вася", "X");
+    const player2 = new Player("Петя", "O");
 
 
     //game state initialization
 
     game.state = {
         currentPlayer: player1
+    };
+
+    function playerCheck(playerOne, playerTwo) {
+        return game.state.currentPlayer.name == playerOne.name ? playerTwo : playerOne
     }
 
+    // console.log(game.state.currentPlayer.figure);
+
     board.addEventListener("click", function (event) {
-        let currentFigure;
-        let currentPlayer;
 
-        game.state = {
-            isGameStarted: true,
-            boardMatrix: {
-
-            },
-            // currentPlayer: player1
-        };
+        // game.state = {
+        //     isGameStarted: true
+        //     // boardMatrix: {
+        //     //
+        //     // }
+        // };
 
         event.target.innerHTML = game.state.currentPlayer.figure;
 
-        game.state.currentPlayer = game.state.currentPlayer.name == player1.name ? player2 : player1
+        game.state.currentPlayer = playerCheck(player1, player2);
 
 
 

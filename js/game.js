@@ -4,5 +4,3 @@ export class Game {
         this.isGameStarted = false;
     };
 };
-
-// export {Game};

@@ -1,8 +1,7 @@
 class Player {
-    constructor(name, figure, turn) {
+    constructor(name, figure) {
         this.name = name;
         this.figure = figure;
-        this.turn = turn;
     };
 };
 
