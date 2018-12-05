@@ -1,10 +1,13 @@
-export class Game {
-    constructor(state, isGameStarted = false) {
+export default class Game {
+    constructor(players, isGameStarted = false) {
         this.state = {
-            ...state,
+            players,
             isGameStarted,
-
+            currentPlayer: null
         }
-
     };
+
+    checkCurrentPlayer(playerOne, playerTwo) {
+        return game.state.currentPlayer.name == playerOne.name ? playerTwo : playerOne
+    }
 };
